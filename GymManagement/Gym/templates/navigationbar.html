@@ -1,0 +1,90 @@
+<html lang="en">
+<head>
+  {% load static %}
+  <title>Gym Management</title>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+  <!-- data table cdn start -->
+  <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+ <script>
+  $(document).ready(function() {
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ]
+    } );
+} );
+ </script>
+
+ <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+ <link rel="stylesheet" href=" https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
+  <!-- data table cdn end -->
+</head>
+
+
+<nav class="navbar navbar-expand-md navbar-dark  bg-primary ">
+  <a class="navbar-brand" href="#">Gym Management</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <ul class="navbar-nav">
+      
+      {% if not request.user.is_staff %}
+  
+      <li><a class="nav-item nav-link active" href="{% url 'login' %}">Home <span class="sr-only">(current)</span></a></li>
+      <li><a class="nav-item nav-link" href="{% url 'about'%}">About</a></li>
+      <li><a class="nav-item nav-link" href="{% url 'contact'%}">Contact</a></li>
+      {% endif %}
+      {% if request.user.is_staff %}
+      <li><a class="nav-item nav-link active" href="{% url 'login' %}">Home <span class="sr-only">(current)</span></a></li>
+      <li class="dropdown"><a class="nav-item nav-link dropdown-toggle " data-toggle="dropdown" href="#">Enquiry</a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="{% url 'add_enquiry' %}">Add Enquiry</a>
+        <a class="dropdown-item" href="{% url 'view_enquiry' %}">View Enquiry</a>
+      </div>
+      </li>
+      <li class="dropdown"><a class="nav-item nav-link dropdown-toggle " data-toggle="dropdown" href="#">Plan</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="{% url 'add_plan' %}">Add Plan</a>
+          <a class="dropdown-item" href="{% url 'view_plan' %}">View Plan</a>
+        </div>
+        </li>
+        <li class="dropdown"><a class="nav-item nav-link dropdown-toggle " data-toggle="dropdown" href="#">Equipment</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="{% url 'add_equipment' %}">Add Equipment</a>
+            <a class="dropdown-item" href="{% url 'view_equipment' %}">View Equipment</a>
+          </div>
+          </li>
+          <li class="dropdown"><a class="nav-item nav-link dropdown-toggle " data-toggle="dropdown" href="#">Member</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="{% url 'add_member' %}">Add Member</a>
+              <a class="dropdown-item" href="{% url 'view_member' %}">View Member</a>
+            </div>
+            </li>
+          <li><a class="nav-item nav-link" href="{% url 'logout'%}">Logout</a></li>
+        {% endif %}
+    </ul>
+  </div>
+</nav>
+{% block body %}
+
+
+
+{% endblock body %}

@@ -1,0 +1,33 @@
+{% extends 'navigationbar.html' %}
+{% load static  %}
+{% block body %}
+
+
+<div class="container" style="margin-top:60px">
+<h2 class="text-primary font-weight-bold">Add Plan</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label><b>Name</b></label>
+        <input type = "text" name="name" class="form-control" required>
+        <label><b>Amount(In Rs.)</b></label>
+        <input type = "text" name="amount" class="form-control" required>
+        <label><b>Duration(In Months)</b></label>
+        <input type = "text" name="duration" class="form-control" required>
+       
+        <br>
+        <input type="submit" value="Submit" class="form-control btn btn-primary">
+    </form>
+</div>
+{% if error == "no" %}
+<script>
+    alert('Record Save Successfully');
+    window.location=('{% url 'view_plan' %}');
+</script>     
+{% endif %}
+{% if error == "yes"  %}
+<script>
+    alert('Something Went Wrong, Try Again');
+</script>     
+{% endif %}
+
+{% endblock  %}

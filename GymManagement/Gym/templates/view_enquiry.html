@@ -1,0 +1,38 @@
+{% extends 'navigationbar.html' %}
+
+{% block body %}
+
+
+<div class="container" style="margin-top:60px">
+<h2 class="text-primary font-weight-bold">View Enquiry</h2>
+<br>
+<table id="example" class="table table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Contact Number</th>
+            <th>Email Id</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Remove</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        {% for i in enq %}
+            <tr>
+                <td>{{i.name}}</td>
+                <td>{{i.contact}}</td>
+                <td>{{i.emailid}}</td>
+                <td>{{i.age}}</td>
+                <td>{{i.gender}}</td>
+                <td><a class="btn btn-danger" href="{% url 'delete_enquiry' i.id %}" onclick="return confirm('Are you sure?')">Delete</a></td>
+
+            </tr>
+        {% endfor %}
+            
+    </tbody>
+</table>
+
+</div>
+{% endblock %}

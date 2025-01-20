@@ -1,0 +1,36 @@
+{% extends 'navigationbar.html' %}
+{% load static  %}
+{% block body %}
+
+
+<div class="container" style="margin-top:60px">
+<h2 class="text-primary font-weight-bold">Add Equipment</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label><b>Equipment Name</b></label>
+        <input type = "text" name="name" class="form-control" required>
+        <label><b>Price</b></label>
+        <input type = "text" name="price" class="form-control" required>
+        <label><b>Unit</b></label>
+        <input type = "text" name="unit" class="form-control" required>
+        <label><b>Purchase Date</b></label>
+        <input type = "text" name="date" class="form-control" required>
+        <label><b>Description</b></label>
+        <textarea name="description" class="form-control"></textarea>
+        <br>
+        <input type="submit" value="Submit" class="form-control btn btn-primary">
+    </form>
+</div>
+{% if error == "no" %}
+<script>
+    alert('Record Save Successfully');
+    window.location=('{% url 'view_enquiry' %}');
+</script>     
+{% endif %}
+{% if error == "yes"  %}
+<script>
+    alert('Something Went Wrong, Try Again');
+</script>     
+{% endif %}
+
+{% endblock  %}

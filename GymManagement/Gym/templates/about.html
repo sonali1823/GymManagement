@@ -1,0 +1,19 @@
+{% extends 'navigationbar.html' %}
+{% load static %}
+{% block body %}
+
+<div class="container" style="margin-top:60px">
+    <h2 class="text-primary text-center font-weight-bold">About US</h2>
+    <br><br><br><br>
+    <div class="row">
+        <div class="col-sm-4 text-center">
+            <img src="{% static '\images\about_us.png' %}" width="300" height="200" class="img-responsive" alt="">
+        </div>
+        <div class="col-sm-8 text-center mt-5">
+            Hello Friends<br>
+            This is Gym Management Project
+        </div>
+    </div>
+</div>
+
+{% endblock %}
